@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:habitour/presentation/widgets/custom_button_widget.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -46,7 +47,7 @@ class IntroScreen extends StatelessWidget {
               CustomButton(
                 label: "Purrhaps, let's go?",
                 onPressed: () {
-                  // TODO: Navigate to the next screen
+                  context.go('/home');
                 },
               ),
               const SizedBox(height: 60),

@@ -143,7 +143,7 @@ class AppThemeProvider implements ThemeConfigProvider {
           ?.copyWith(color: onSurface, fontWeight: FontWeight.bold),
       titleLarge: GoogleFonts.rubikMonoOne(
         textStyle: base.titleLarge
-        ?.copyWith(color: onSurface, fontWeight: FontWeight.bold),
+            ?.copyWith(color: onSurface, fontWeight: FontWeight.bold),
       ),
       titleMedium: base.titleMedium
           ?.copyWith(color: onSurface, fontWeight: FontWeight.w600),
