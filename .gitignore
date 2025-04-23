@@ -44,6 +44,11 @@ migrate_working_dir/
 # Exclude macOS specific files
 **/macos/Runner.xcworkspace/
 **/macos/xcshareddata/
+**/macos/Build/
+**/macos/CompilationCache.noindex/
+**/macos/Logs/
+**/macos/ModuleCache.noindex/
+**/macos/SDKStatCaches.noindex/
 
 # Exclude Windows specific files
 **/windows/runner/Debug/
@@ -67,3 +72,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# iOS specific
+ios/Podfile.lock
+ios/Pods/
+
+# macOS specific
+macos/Podfile.lock
+macos/Pods/
