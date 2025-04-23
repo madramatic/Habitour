@@ -44,7 +44,7 @@ class IntroScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 80),
-              CustomButton(
+              PrimaryButton(
                 label: "Purrhaps, let's go?",
                 onPressed: () {
                   context.go('/home');
