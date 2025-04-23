@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:habitour/presentation/widgets/horizontal_calendar_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 40.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
         child: Column(
           children: [
             const SizedBox(height: 20),
@@ -27,15 +28,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   todayDate,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
-                        fontSize: 28,
+                        fontSize: 32,
                       ),
                 ),
                 Image.asset(
                   'assets/images/checklist_left.png',
-                  height: 80.0,
+                  height: 100.0,
                 ),
               ],
             ),
+            const SizedBox(height: 20),
+            const HorizontalCalendarWidget(),
           ],
         ),
       ),
