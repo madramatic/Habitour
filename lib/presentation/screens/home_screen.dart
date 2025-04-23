@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitour/presentation/widgets/custom_button_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:habitour/presentation/widgets/horizontal_calendar_widget.dart';
 
@@ -40,6 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 20),
             const HorizontalCalendarWidget(),
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(40.0),
+        child: SecondaryButton(
+          label: "New habit, who this?",
+          onPressed: () {},
+          icon: Icons.my_library_add_rounded,
         ),
       ),
     );
