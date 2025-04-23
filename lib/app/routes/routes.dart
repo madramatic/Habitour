@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:habitour/features/intro/presentation/pages/intro_screen.dart';
+import 'package:habitour/presentation/screens/intro_screen.dart';
 
 final GoRouter router = GoRouter(
   routes: [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
 import 'theme_config.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppThemeProvider implements ThemeConfigProvider {
   @override
@@ -129,7 +130,7 @@ class AppThemeProvider implements ThemeConfigProvider {
   }
 
   TextTheme _buildTextTheme(TextTheme base, Color onSurface, Color onPrimary) {
-    return base.copyWith(
+    return GoogleFonts.rubikTextTheme(base).copyWith(
       displayLarge: base.displayLarge
           ?.copyWith(color: onSurface, fontWeight: FontWeight.bold),
       displayMedium: base.displayMedium
@@ -140,8 +141,10 @@ class AppThemeProvider implements ThemeConfigProvider {
           ?.copyWith(color: onSurface, fontWeight: FontWeight.w600),
       headlineSmall: base.headlineSmall
           ?.copyWith(color: onSurface, fontWeight: FontWeight.bold),
-      titleLarge: base.titleLarge
-          ?.copyWith(color: onSurface, fontWeight: FontWeight.bold),
+      titleLarge: GoogleFonts.rubikMonoOne(
+        textStyle: base.titleLarge
+        ?.copyWith(color: onSurface, fontWeight: FontWeight.bold),
+      ),
       titleMedium: base.titleMedium
           ?.copyWith(color: onSurface, fontWeight: FontWeight.w600),
       titleSmall: base.titleSmall?.copyWith(color: onSurface),
