@@ -15,13 +15,21 @@ class Habit {
     required this.colorCode,
   });
 
-  Habit incrementStreak() {
+  Habit copyWith({
+    String? name,
+    String? description,
+    int? streak,
+    int? colorCode,
+  }) {
     return Habit(
       id: id,
-      name: name,
+      name: name ?? this.name,
+      description: description ?? this.description,
       createdAt: createdAt,
-      streak: streak + 1,
-      colorCode: colorCode,
+      streak: streak ?? this.streak,
+      colorCode: colorCode ?? this.colorCode,
     );
   }
+
+  Habit incrementStreak() => copyWith(streak: streak + 1);
 }
