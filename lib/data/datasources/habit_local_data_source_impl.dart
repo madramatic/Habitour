@@ -8,7 +8,7 @@ class HabitLocalDataSourceImpl implements HabitLocalDataSource {
   HabitLocalDataSourceImpl(this._habitBox);
 
   @override
-  Future<void> addHabit(HabitModel habit) async {
+  Future<void> saveHabit(HabitModel habit) async {
     return _habitBox.put(habit.id, habit);
   }
 
