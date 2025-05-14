@@ -5,12 +5,14 @@ class PrimaryButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
   final IconData? icon;
+  final double? width;
 
   const PrimaryButton({
     super.key,
     required this.label,
     required this.onPressed,
     this.icon,
+    this.width,
   });
 
   @override
@@ -18,6 +20,7 @@ class PrimaryButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
+        width: width,
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
@@ -57,12 +60,14 @@ class SecondaryButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
   final IconData? icon;
+  final double? width;
 
   const SecondaryButton({
     super.key,
     required this.label,
     required this.onPressed,
     this.icon,
+    this.width,
   });
 
   @override
@@ -70,6 +75,7 @@ class SecondaryButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
+        width: width,
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
@@ -99,6 +105,48 @@ class SecondaryButton extends StatelessWidget {
                   ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomIconButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onPressed;
+  final double size;
+
+  const CustomIconButton({
+    super.key,
+    required this.icon,
+    required this.onPressed,
+    this.size = 40.0,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primary,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.accentSeedLight.withOpacity(0.2),
+              offset: const Offset(0, 4),
+              blurRadius: 8,
+            ),
+          ],
+        ),
+        child: Center(
+          child: Icon(
+            icon,
+            color: Colors.white,
+            size: size * 0.5,
+          ),
         ),
       ),
     );
