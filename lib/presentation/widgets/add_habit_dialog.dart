@@ -1,0 +1,26 @@
+import 'package:flutter/material.dart';
+import 'package:habitour/presentation/widgets/custom_bottom_dialog.dart';
+
+class AddHabitDialog {
+  static void show(BuildContext context, {required Function(String) onSave}) {
+    final TextEditingController habitNameController = TextEditingController();
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
+      builder: (context) {
+        return CustomBottomDialog(
+          buttonText: 'Save',
+          onClose: () => Navigator.of(context).pop(),
+          onButtonPressed: () {},
+          textController: habitNameController,
+        );
+      },
+    );
+  }
+}
