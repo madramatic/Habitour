@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:habitour/core/models/icon_enum.dart';
+import 'package:habitour/application/notifiers/icon_notifier.dart';
 import 'package:habitour/presentation/widgets/custom_button_widget.dart';
 
-class CustomIconPicker extends StatelessWidget {
+class CustomIconPicker extends ConsumerWidget {
   final ValueChanged<HabitIcon> onIconSelected;
 
   const CustomIconPicker({
@@ -10,7 +12,10 @@ class CustomIconPicker extends StatelessWidget {
     required this.onIconSelected,
   });
 
-  void show(BuildContext context) {
+  void show(BuildContext context, WidgetRef ref) {
+    final iconNotifier = ref.read(iconNotifierProvider.notifier);
+    final selectedIcon = ref.read(iconNotifierProvider);
+
     showDialog(
       context: context,
       builder: (context) => Dialog(
@@ -68,12 +73,21 @@ class CustomIconPicker extends StatelessWidget {
                       padding: const EdgeInsets.all(12.0),
                       itemCount: HabitIcon.values.length,
                       itemBuilder: (context, index) {
+                        final icon = HabitIcon.values[index];
+                        final isSelected = icon == selectedIcon;
+
                         return GestureDetector(
-                          onTap: () => onIconSelected(HabitIcon.values[index]),
+                          onTap: () {
+                            iconNotifier.selectIcon(icon);
+                            Navigator.of(context).pop();
+                            onIconSelected(icon);
+                          },
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 300),
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: isSelected
+                                  ? Theme.of(context).colorScheme.primary
+                                  : Colors.white,
                               borderRadius: BorderRadius.circular(12),
                               boxShadow: [
                                 BoxShadow(
@@ -83,14 +97,18 @@ class CustomIconPicker extends StatelessWidget {
                                 ),
                               ],
                               border: Border.all(
-                                color: Colors.black.withOpacity(0.2),
+                                color: isSelected
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Colors.black.withOpacity(0.2),
                                 width: 2,
                               ),
                             ),
                             child: Icon(
-                              HabitIcon.values[index].iconData,
+                              icon.iconData,
                               size: 32.0,
-                              color: Theme.of(context).colorScheme.primary,
+                              color: isSelected
+                                  ? Colors.white
+                                  : Theme.of(context).colorScheme.primary,
                             ),
                           ),
                         );
@@ -107,20 +125,30 @@ class CustomIconPicker extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedIcon = ref.watch(iconNotifierProvider);
+
     return GestureDetector(
-      onTap: () => show(context),
+      onTap: () => show(context, ref),
       child: Container(
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
           color: Colors.grey[200],
           borderRadius: BorderRadius.circular(12),
         ),
-        child: const Row(
+        child: Row(
           children: [
-            Icon(Icons.restaurant, color: Colors.blue),
-            SizedBox(width: 8),
-            Text('Icon', style: TextStyle(fontSize: 16)),
+            if (selectedIcon != null)
+              Icon(
+                selectedIcon.iconData,
+                color: Colors.blue,
+                size: 32,
+              )
+            else
+              const Icon(Icons.restaurant, color: Colors.blue),
+            const SizedBox(width: 8),
+            if (selectedIcon == null)
+              const Text('Icon', style: TextStyle(fontSize: 16)),
           ],
         ),
       ),
