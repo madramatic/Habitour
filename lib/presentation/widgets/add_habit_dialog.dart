@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:habitour/application/notifiers/icon_notifier.dart';
 import 'package:habitour/presentation/widgets/custom_bottom_dialog.dart';
 
 class AddHabitDialog {
   static void show(BuildContext context, {required Function(String) onSave}) {
     final TextEditingController habitNameController = TextEditingController();
+    final container = ProviderScope.containerOf(context);
 
     showModalBottomSheet(
       context: context,
@@ -16,11 +19,16 @@ class AddHabitDialog {
       builder: (context) {
         return CustomBottomDialog(
           buttonText: 'Save',
-          onClose: () => Navigator.of(context).pop(),
+          onClose: () {
+            container.read(iconNotifierProvider.notifier).selectIcon(null);
+            Navigator.of(context).pop();
+          },
           onButtonPressed: () {},
           textController: habitNameController,
         );
       },
-    );
+    ).whenComplete(() {
+      container.read(iconNotifierProvider.notifier).selectIcon(null);
+    });
   }
 }
