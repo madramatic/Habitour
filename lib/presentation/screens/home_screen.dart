@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habitour/presentation/widgets/add_habit_dialog.dart';
 import 'package:intl/intl.dart';
 import 'package:habitour/presentation/widgets/horizontal_calendar_widget.dart';
 import '../widgets/custom_button_widget.dart';
@@ -50,7 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
             right: 40.0,
             child: SecondaryButton(
               label: "New habit, who this?",
-              onPressed: () {},
+              onPressed: () {
+                AddHabitDialog.show(
+                  context,
+                  onSave: (habitName) {},
+                );
+              },
               icon: Icons.my_library_add_rounded,
             ),
           ),
