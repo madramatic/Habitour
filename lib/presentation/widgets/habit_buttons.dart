@@ -111,12 +111,12 @@ class SecondaryButton extends StatelessWidget {
   }
 }
 
-class CustomIconButton extends StatelessWidget {
+class HabitIconButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onPressed;
   final double size;
 
-  const CustomIconButton({
+  const HabitIconButton({
     super.key,
     required this.icon,
     required this.onPressed,

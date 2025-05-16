@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:habitour/presentation/widgets/custom_button_widget.dart';
+import 'package:habitour/presentation/widgets/habit_buttons.dart';
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({super.key});

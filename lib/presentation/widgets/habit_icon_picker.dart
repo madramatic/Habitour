@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:habitour/core/models/icon_enum.dart';
+import 'package:habitour/core/models/habit_icon_enum.dart';
 import 'package:habitour/application/notifiers/icon_notifier.dart';
-import 'package:habitour/presentation/widgets/custom_button_widget.dart';
+import 'package:habitour/presentation/widgets/habit_buttons.dart';
 
 class CustomIconPicker extends ConsumerWidget {
   final ValueChanged<HabitIcon> onIconSelected;
@@ -54,7 +54,7 @@ class CustomIconPicker extends ConsumerWidget {
                           'Select Icon',
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
-                        CustomIconButton(
+                        HabitIconButton(
                           icon: Icons.close,
                           onPressed: () => Navigator.of(context).pop(),
                           size: 32,

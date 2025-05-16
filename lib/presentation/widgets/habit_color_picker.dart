@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:habitour/application/notifiers/color_notifier.dart';
 import 'package:habitour/core/theme/index.dart';
 
-import 'custom_button_widget.dart';
+import 'habit_buttons.dart';
 
 class CustomColorPicker extends ConsumerWidget {
   final ValueChanged<Color> onColorSelected;
@@ -69,7 +69,7 @@ class CustomColorPicker extends ConsumerWidget {
                         'Select Color',
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
-                      CustomIconButton(
+                      HabitIconButton(
                         icon: Icons.close,
                         onPressed: () => Navigator.of(context).pop(),
                         size: 32,

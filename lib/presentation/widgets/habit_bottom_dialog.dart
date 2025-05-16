@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:habitour/presentation/widgets/custom_button_widget.dart';
+import 'package:habitour/presentation/widgets/habit_buttons.dart';
 
-import 'custom_color_picker.dart';
-import 'custom_icon_picker.dart';
+import 'habit_color_picker.dart';
+import 'habit_icon_picker.dart';
 
 class CustomBottomDialog extends StatelessWidget {
   final String buttonText;
@@ -43,7 +43,7 @@ class CustomBottomDialog extends StatelessWidget {
                       CustomColorPicker(onColorSelected: (color) {}),
                     ],
                   ),
-                  CustomIconButton(
+                  HabitIconButton(
                     icon: Icons.close,
                     onPressed: onClose,
                     size: 32,

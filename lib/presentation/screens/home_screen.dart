@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habitour/presentation/widgets/add_habit_dialog.dart';
 import 'package:intl/intl.dart';
 import 'package:habitour/presentation/widgets/horizontal_calendar_widget.dart';
-import '../widgets/custom_button_widget.dart';
+import '../widgets/habit_buttons.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
