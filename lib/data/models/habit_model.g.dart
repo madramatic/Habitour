@@ -23,13 +23,14 @@ class HabitModelAdapter extends TypeAdapter<HabitModel> {
       createdAt: fields[3] as DateTime,
       streak: fields[4] as int,
       colorCode: fields[5] as int,
+      iconId: fields[6] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, HabitModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class HabitModelAdapter extends TypeAdapter<HabitModel> {
       ..writeByte(4)
       ..write(obj.streak)
       ..writeByte(5)
-      ..write(obj.colorCode);
+      ..write(obj.colorCode)
+      ..writeByte(6)
+      ..write(obj.iconId);
   }
 
   @override
