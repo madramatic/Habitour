@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:habitour/application/notifiers/color_notifier.dart';
 import 'package:habitour/application/notifiers/icon_notifier.dart';
 import 'package:habitour/presentation/widgets/custom_bottom_dialog.dart';
 
@@ -21,14 +22,17 @@ class AddHabitDialog {
           buttonText: 'Save',
           onClose: () {
             container.read(iconNotifierProvider.notifier).selectIcon(null);
+            container.read(colorNotifierProvider.notifier).selectColor(null);
             Navigator.of(context).pop();
           },
-          onButtonPressed: () {},
+          onButtonPressed: () {
+            container.read(iconNotifierProvider.notifier).selectIcon(null);
+            container.read(colorNotifierProvider.notifier).selectColor(null);
+            Navigator.of(context).pop();
+          },
           textController: habitNameController,
         );
       },
-    ).whenComplete(() {
-      container.read(iconNotifierProvider.notifier).selectIcon(null);
-    });
+    );
   }
 }
