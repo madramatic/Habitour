@@ -138,17 +138,19 @@ class CustomIconPicker extends ConsumerWidget {
         ),
         child: Row(
           children: [
+            const SizedBox(width: 8),
             if (selectedIcon != null)
               Icon(
                 selectedIcon.iconData,
-                color: Colors.blue,
-                size: 32,
+                color: Theme.of(context).colorScheme.primary,
+                size: 40,
               )
             else
               const Icon(Icons.restaurant, color: Colors.blue),
             const SizedBox(width: 8),
             if (selectedIcon == null)
               const Text('Icon', style: TextStyle(fontSize: 16)),
+            const SizedBox(width: 8),
           ],
         ),
       ),
