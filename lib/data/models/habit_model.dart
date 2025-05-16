@@ -23,6 +23,9 @@ class HabitModel extends HiveObject {
   @HiveField(5)
   final int colorCode;
 
+  @HiveField(6)
+  final String iconId;
+
   HabitModel({
     required this.id,
     required this.name,
@@ -30,6 +33,7 @@ class HabitModel extends HiveObject {
     required this.createdAt,
     required this.streak,
     required this.colorCode,
+    required this.iconId,
   });
 
   Habit toEntity() {
@@ -40,6 +44,7 @@ class HabitModel extends HiveObject {
       createdAt: createdAt,
       streak: streak,
       colorCode: colorCode,
+      iconId: iconId,
     );
   }
 
@@ -51,6 +56,7 @@ class HabitModel extends HiveObject {
       createdAt: habit.createdAt,
       streak: habit.streak,
       colorCode: habit.colorCode,
+      iconId: habit.iconId,
     );
   }
 }
