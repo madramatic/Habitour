@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:habitour/application/notifiers/color_notifier.dart';
 import 'package:habitour/core/theme/index.dart';
 
 import 'custom_button_widget.dart';
 
-class CustomColorPicker extends StatelessWidget {
+class CustomColorPicker extends ConsumerWidget {
   final ValueChanged<Color> onColorSelected;
 
   const CustomColorPicker({
@@ -11,7 +13,10 @@ class CustomColorPicker extends StatelessWidget {
     required this.onColorSelected,
   });
 
-  void show(BuildContext context) {
+  void show(BuildContext context, WidgetRef ref) {
+    final colorNotifier = ref.read(colorNotifierProvider.notifier);
+    final selectedColor = ref.read(colorNotifierProvider);
+
     final themeColors = Theme.of(context).brightness == Brightness.light
         ? [
             AppColors.primarySeedLight,
@@ -84,8 +89,14 @@ class CustomColorPicker extends StatelessWidget {
                     padding: const EdgeInsets.all(20.0),
                     itemCount: themeColors.length,
                     itemBuilder: (context, index) {
+                      final color = themeColors[index];
+                      final isSelected = color == selectedColor;
                       return GestureDetector(
-                        onTap: () => onColorSelected(themeColors[index]),
+                        onTap: () {
+                          colorNotifier.selectColor(color);
+                          Navigator.of(context).pop();
+                          onColorSelected(color);
+                        },
                         child: AnimatedContainer(
                           duration: const Duration(milliseconds: 300),
                           decoration: BoxDecoration(
@@ -99,8 +110,10 @@ class CustomColorPicker extends StatelessWidget {
                               ),
                             ],
                             border: Border.all(
-                              color: Colors.black.withOpacity(0.2),
-                              width: 2,
+                              color: isSelected
+                                  ? Colors.black.withOpacity(0.4)
+                                  : Colors.black.withOpacity(0.2),
+                              width: isSelected ? 4 : 1,
                             ),
                           ),
                         ),
@@ -117,20 +130,36 @@ class CustomColorPicker extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedColor = ref.watch(colorNotifierProvider);
     return GestureDetector(
-      onTap: () => show(context),
+      onTap: () => show(context, ref),
       child: Container(
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
           color: Colors.grey[200],
           borderRadius: BorderRadius.circular(12),
         ),
-        child: const Row(
+        child: Row(
           children: [
-            Icon(Icons.color_lens, color: Colors.green),
-            SizedBox(width: 8),
-            Text('Color', style: TextStyle(fontSize: 16)),
+            const SizedBox(width: 8),
+            if (selectedColor != null)
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: selectedColor,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                      color: Colors.black.withOpacity(0.2), width: 2),
+                ),
+              )
+            else
+              const Icon(Icons.color_lens, color: Colors.green),
+            const SizedBox(width: 8),
+            if (selectedColor == null)
+              const Text('Color', style: TextStyle(fontSize: 16)),
+            const SizedBox(width: 8),
           ],
         ),
       ),
