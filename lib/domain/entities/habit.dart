@@ -5,6 +5,7 @@ class Habit {
   final DateTime createdAt;
   final int streak;
   final int colorCode;
+  final String iconId;
 
   Habit({
     required this.id,
@@ -13,6 +14,7 @@ class Habit {
     required this.createdAt,
     required this.streak,
     required this.colorCode,
+    required this.iconId,
   });
 
   Habit copyWith({
@@ -20,6 +22,7 @@ class Habit {
     String? description,
     int? streak,
     int? colorCode,
+    String? iconId,
   }) {
     return Habit(
       id: id,
@@ -28,6 +31,7 @@ class Habit {
       createdAt: createdAt,
       streak: streak ?? this.streak,
       colorCode: colorCode ?? this.colorCode,
+      iconId: iconId ?? this.iconId,
     );
   }
 
